@@ -1,0 +1,14 @@
+{
+  "name": "thriftio",
+  "version": "1.0.0",
+  "description": "E-Commerce Store",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run start\" \"cd frontend && npm run dev\"",
+    "backend": "concurrently \"cd backend && npm run start\"",
+    "frontend": "concurrently \"cd frontend && npm run dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
