@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model carts {
+  uuid      String    @id @db.Uuid
+  userid    String?   @db.Uuid
+  productid String?   @db.Uuid
+  quantity  Int?
+  dateadded DateTime? @db.Timestamp(6)
+  products  products? @relation(fields: [productid], references: [uuid], onDelete: NoAction, onUpdate: NoAction)
+  users     users?    @relation(fields: [userid], references: [uuid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model categories {
+  uuid               String               @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  category           String
+  product_categories product_categories[]
+}
+
+model product_categories {
+  product_id  String     @db.Uuid
+  category_id String     @db.Uuid
+  categories  categories @relation(fields: [category_id], references: [uuid], onDelete: Cascade, onUpdate: NoAction)
+  products    products   @relation(fields: [product_id], references: [uuid], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([product_id, category_id])
+}
+
+model products {
+  uuid               String               @id @db.Uuid
+  url                String?              @db.VarChar(512)
+  name               String?              @db.VarChar(255)
+  description        String?
+  price              Decimal?             @db.Decimal(10, 2)
+  brand              String?              @db.VarChar(255)
+  available          Boolean?
+  carts              carts[]
+  product_categories product_categories[]
+}
+
+model users {
+  uuid         String  @id @db.Uuid
+  firstname    String? @db.VarChar(50)
+  lastname     String? @db.VarChar(50)
+  username     String? @db.VarChar(50)
+  email        String? @db.VarChar(255)
+  passwordhash String? @db.VarChar(255)
+  cart         String? @db.Uuid
+  carts        carts[]
+}
