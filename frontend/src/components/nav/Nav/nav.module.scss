@@ -1,0 +1,20 @@
+@use '@/styles/variables' as var;
+
+.nav {
+  height: 80px;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  padding: var.$space-sm;
+}
+
+.header {
+  font-size: var.$font-size-xxl;
+  font-weight: 700;
+  letter-spacing: .0125rem;
+}
+
+.headerInterpunct {
+  font-size: var.$font-size-xxl;
+  color: var.$clr-blue-200;
+}
