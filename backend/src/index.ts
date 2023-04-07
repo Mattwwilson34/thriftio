@@ -1,10 +1,10 @@
 import express from 'express';
-import morgan from 'morgan'
-import helmet from 'helmet'
-import cors from 'cors'
-import * as dotenv from 'dotenv' 
-import path from 'path'
-import api from './api/api'
+import morgan from 'morgan';
+import helmet from 'helmet';
+import cors from 'cors';
+import * as dotenv from 'dotenv';
+import path from 'path';
+import api from './api/api';
 
 // point to the .env file in the root directory
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
@@ -26,6 +26,6 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
-app.listen(() => {
+app.listen(process.env.PORT, () => {
   console.log(`Server running at http://localhost:${process.env.PORT}`);
 });
