@@ -1,0 +1,63 @@
+/* Import Open Sans font */
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../../public/fonts/OpenSans-VariableFont.ttf') format('truetype');
+  font-weight: 300 400 500 600 700 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../../public/fonts/OpenSans-Italic-VariableFont.ttf')
+    format('truetype');
+  font-weight: 300 400 500 600 700 800;
+  font-style: italic;
+}
+
+/* Spacing */
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2rem;
+$space-xl: 2.5rem;
+
+/* Typography */
+$font-family: 'Open Sans', sans-serif;
+
+$font-size-base: 1rem;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-xxl: 2rem;
+$font-size-xxxl: 3rem;
+
+
+$line-height-base: 1.5;
+$line-height-heading: 1.2;
+
+/* clrs */
+$clr-white: #ffffff;
+
+$clr-grey-100: #f9f9f9;
+$clr-grey-200: #f6f6f6;
+$clr-grey-300: #dfe3e4;
+$clr-grey-400: #cdcdcd;
+
+$clr-blue-100: #d4e4fc;
+$clr-blue-200: #18a2fb;
+
+$clr-red-100: #ee3422;
+
+/* Borders */
+$border-radius: 0.25rem;
+$border-width: 1px;
+$border-clr: #e5e5e5;
+
+/* Shadows */
+$box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+$text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+/* Z-Index */
+$zindex-tooltip: 1050;
+$zindex-modal: 1060;
+
