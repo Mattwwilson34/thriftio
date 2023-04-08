@@ -1,7 +1,18 @@
 import Head from 'next/head'
 import Nav from '@/components/nav'
+import { useEffect } from 'react'
+import type { Product } from '@/types/types'
 
-export default function Home() {
+export default function Home(): JSX.Element {
+  useEffect(() => {
+    async function fetchproducts() {
+      const response = await fetch('/api/products')
+      const products: Product = await response.json()
+      console.log(products)
+    }
+    fetchproducts()
+  }, [])
+
   return (
     <>
       <Head>
@@ -12,7 +23,6 @@ export default function Home() {
       </Head>
       <main>
         <Nav />
-
       </main>
     </>
   )
