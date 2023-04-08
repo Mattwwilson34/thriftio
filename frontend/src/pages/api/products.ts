@@ -1,15 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-// create a type for the product data
-type ProductData = {
-  uuId: string
-  url: string
-  name: string
-  description: string
-  price: number
-  brand: string
-  available: boolean
-}
+import type { ProductData } from '@/types/types'
 
 // create a type for the error response
 type ErrorResponse = {
