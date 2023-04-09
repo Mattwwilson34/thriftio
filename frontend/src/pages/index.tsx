@@ -1,14 +1,19 @@
 import Head from 'next/head'
 import Nav from '@/components/nav'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import type { Product } from '@/types/types'
+import { ProductCard } from '@/components/products'
 
 export default function Home(): JSX.Element {
+  const [products, setProducts] = useState<Product[] | []>([])
+  const [loading, setLoading] = useState<boolean>(true)
+
   useEffect(() => {
     async function fetchproducts() {
       const response = await fetch('/api/products')
-      const products: Product = await response.json()
-      console.log(products)
+      const products: Product[] = await response.json()
+      setProducts(products)
+      setLoading(false)
     }
     fetchproducts()
   }, [])
@@ -21,8 +26,15 @@ export default function Home(): JSX.Element {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Nav />
       <main>
-        <Nav />
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          products.map((product) => {
+            return <ProductCard key={product.uuId} productData={product} />
+            })
+        )}
       </main>
     </>
   )
