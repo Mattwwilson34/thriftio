@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Nav from '@/components/nav'
 import { useState, useEffect } from 'react'
 import type { Product } from '@/types/types'
-import { ProductCard } from '@/components/products'
+import { ProductList } from '@/components/products'
 
 export default function Home(): JSX.Element {
   const [products, setProducts] = useState<Product[] | []>([])
@@ -28,13 +28,7 @@ export default function Home(): JSX.Element {
       </Head>
       <Nav />
       <main>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          products.map((product) => {
-            return <ProductCard key={product.uuId} productData={product} />
-            })
-        )}
+        {loading ? <p>Loading...</p> : <ProductList products={products} />}
       </main>
     </>
   )
