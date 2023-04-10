@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import styles from './product-card.module.scss'
 import {Product} from '@/types/types'
 
@@ -7,12 +8,12 @@ interface ProductCardProps {
 
 
 function ProductCard({productData}: ProductCardProps): JSX.Element {
+  const {name, price, description, imageUrl} = productData
 
-  console.log(productData)
-  const {name, price, description} = productData
   return (
     <div className={styles.productCard}>
       <h1 className={styles.productName}>{name}</h1>
+      <Image className={styles.productImage} src={imageUrl} alt={name} width={300} height={300} />
       <div className={styles.productPrice}>{price}</div>
       <p className={styles.productDescription}>{description}</p>
     </div>
