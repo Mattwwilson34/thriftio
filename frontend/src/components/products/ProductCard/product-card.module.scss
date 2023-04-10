@@ -1,0 +1,16 @@
+@use '@/styles/variables' as var;
+
+.productCard {
+  border: 1px solid var.$clr-gray-300;
+  max-width: 400px;
+  padding: var.$space-sm;
+}
+
+.productDescription {
+  display: -webkit-box; /* Set the display property to -webkit-box for Safari and Chrome compatibility */
+  -webkit-line-clamp: 3; /* Limit the text to three lines */
+  -webkit-box-orient: vertical; /* Set the orientation of the -webkit-box to vertical */
+  overflow: hidden; /* Hides any overflowing text */
+  text-overflow: ellipsis; /* Displays an ellipsis at the end of the truncated text */
+  max-width: 400px; /* Limits the width of the paragraph to 200px */
+}

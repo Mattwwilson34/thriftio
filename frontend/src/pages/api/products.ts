@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { ProductData } from '@/types/types'
+import type { Product } from '@/types/types'
 
 // create a type for the error response
 type ErrorResponse = {
@@ -10,7 +10,7 @@ type ErrorResponse = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ProductData | ErrorResponse>
+  res: NextApiResponse<Product | ErrorResponse>
 ) {
   try {
     // fetch the data from the API
@@ -18,7 +18,7 @@ export default async function handler(
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
-    const data: ProductData = await response.json()
+    const data: Product = await response.json()
     // if the data is fetched successfully, return the data
     res.status(200).json(data)
   } catch (error: any) {
