@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ['m.media-amazon.com'],
   },
+  reactStrictMode: false,
 }
 
 module.exports = nextConfig
