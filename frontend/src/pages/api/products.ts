@@ -13,8 +13,18 @@ export default async function handler(
   res: NextApiResponse<Product | ErrorResponse>
 ) {
   try {
+    let productApiUrl = ''
+
+    // handle pagination if paginationCursor is null
+    const { cursor: paginationCursor } = req.query
+    if (paginationCursor === 'null') {
+      productApiUrl = `http://localhost:3000/api/products`
+    } else {
+      productApiUrl = `http://localhost:3000/api/products?cursor=${paginationCursor}`
+    }
+
     // fetch the data from the API
-    const response = await fetch('http://localhost:3000/api/products')
+    const response = await fetch(productApiUrl)
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
