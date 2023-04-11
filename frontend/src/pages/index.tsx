@@ -1,23 +1,8 @@
 import Head from 'next/head'
 import Nav from '@/components/nav'
-import { useState, useEffect } from 'react'
-import type { Product } from '@/types/types'
-import { ProductList } from '@/components/products'
+import {ProductsInfinitScroll} from '@/components/products'
 
 export default function Home(): JSX.Element {
-  const [products, setProducts] = useState<Product[] | []>([])
-  const [loading, setLoading] = useState<boolean>(true)
-
-  useEffect(() => {
-    async function fetchproducts() {
-      const response = await fetch('/api/products')
-      const products: Product[] = await response.json()
-      setProducts(products)
-      setLoading(false)
-    }
-    fetchproducts()
-  }, [])
-
   return (
     <>
       <Head>
@@ -28,7 +13,7 @@ export default function Home(): JSX.Element {
       </Head>
       <Nav />
       <main>
-        {loading ? <p>Loading...</p> : <ProductList products={products} />}
+        <ProductsInfinitScroll />
       </main>
     </>
   )
