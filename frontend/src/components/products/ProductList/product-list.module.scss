@@ -1,4 +1,7 @@
+@use '@/styles/variables' as var;
+
 .productList {
   display: flex;
   flex-wrap: wrap;
+  padding: var.$space-sm;
 }
