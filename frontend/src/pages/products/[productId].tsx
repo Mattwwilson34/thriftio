@@ -1,32 +1,11 @@
-function ProductDetailPage(props) {
-  return <h1>The Product Detail Page {props.productId}</h1>
-}
+import { useRouter } from 'next/router'
 
-export async function getStaticPaths() {
-  // call API endpoint to get all product IDs
-  const response = await fetch('http://localhost:3001/api/productIds')
-  const productIdsStringArray = await response.json()
+function ProductDetailPage() {
+  const router = useRouter()
 
-  // create an array of paths with params (id)
-  const paths = productIdsStringArray.map((productId) => ({
-    params: {
-      productId: productId,
-    },
-  }))
+  const productId = router.query.productId
 
-  return { paths, fallback: false }
-}
-
-export async function getStaticProps(context) {
-  //
-  //todo: fetch product data from API
-  //
-  const productId = context.params.productId
-  return {
-    props: {
-      productId,
-    },
-  }
+  return <h1>The Product Detail Page {productId}</h1>
 }
 
 export default ProductDetailPage
