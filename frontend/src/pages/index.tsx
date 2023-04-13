@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Nav from '@/components/nav'
 import {ProductsInfinitScroll} from '@/components/products'
 
 export default function Home(): JSX.Element {
@@ -11,7 +10,6 @@ export default function Home(): JSX.Element {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
       <main>
         <ProductsInfinitScroll />
       </main>
