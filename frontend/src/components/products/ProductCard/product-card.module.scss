@@ -4,13 +4,38 @@
   border: 1px solid var.$clr-gray-300;
   max-width: 400px;
   padding: var.$space-sm;
+  display: flex;
+  flex-direction: column;
+  gap: var.$space-md;
+  background-color: var.$clr-gray-200;
+  border-radius: var.$border-radius;
+  margin: var.$space-sm 0;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    border-radius: var.$border-radius;
+  }
 }
 
-.productDescription {
-  display: -webkit-box; /* Set the display property to -webkit-box for Safari and Chrome compatibility */
-  -webkit-line-clamp: 3; /* Limit the text to three lines */
-  -webkit-box-orient: vertical; /* Set the orientation of the -webkit-box to vertical */
-  overflow: hidden; /* Hides any overflowing text */
-  text-overflow: ellipsis; /* Displays an ellipsis at the end of the truncated text */
-  max-width: 400px; /* Limits the width of the paragraph to 200px */
+.productName {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+}
+
+.productPrice {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+  text-align: center;
+
+  &::before {
+    content: "$";
+  }
+}
+
+.addToCardButton {
+  border: none;
+  border-radius: var.$border-radius;
+  padding: var.$space-sm var.$space-md;
+  background-color: var.$clr-blue-100;
 }
