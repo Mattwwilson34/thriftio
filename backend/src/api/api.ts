@@ -42,4 +42,18 @@ router.get(
   }
 );
 
+// get product by uuid
+router.get(
+  '/product/:productId',
+  async (req: Request, res: Response): Promise<void> => {
+    const { productId } = req.params;
+    const productData = await prisma.products.findUnique({
+      where: {
+        uuid: productId,
+      },
+    });
+    res.send(productData)
+  }
+);
+
 export default router;
