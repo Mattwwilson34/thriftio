@@ -1,0 +1,41 @@
+@use '@/styles/variables' as var;
+
+.productSection {
+  padding: var.$space-md;
+  display: flex;
+  flex-direction: column;
+  gap: var.$space-md;
+}
+
+.productName {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+}
+
+.productImage {
+  display: block;
+  margin: 0 auto;
+  border-radius: var.$border-radius;
+}
+
+.productPrice {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+  text-align: center;
+
+  &::before {
+    content: "$";
+  }
+}
+
+.addToCardButton {
+  border: none;
+  border-radius: var.$border-radius;
+  padding: var.$space-sm var.$space-md;
+  background-color: var.$clr-blue-100;
+}
+
+.productDescriptionHeader {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+}
