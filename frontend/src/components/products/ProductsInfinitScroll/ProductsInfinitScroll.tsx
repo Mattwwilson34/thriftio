@@ -10,6 +10,7 @@ function ProductsInfinitScroll(): JSX.Element {
   const observer = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
+    test()
     // fetch products if there are none
     if (products.length === 0) {
       fetchProducts()
@@ -42,6 +43,12 @@ function ProductsInfinitScroll(): JSX.Element {
     setProducts((prevProducts) => [...prevProducts, ...productsData.products])
     setPaginationCursor(productsData.cursor)
     setLoading(false)
+  }
+
+  async function test () {
+    const response = await fetch('/api/productIds')
+    const data = await response.json()
+    console.log(data)
   }
 
   return (

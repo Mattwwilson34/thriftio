@@ -26,4 +26,15 @@ router.get('/products', async (req: Request, res: Response): Promise<void> => {
   res.json({ products, cursor: nextCursor });
 });
 
+
+router.get('/productIds', async (req: Request, res: Response): Promise<void> => {
+  // hit the database and get the product ids
+  const productIdsData = await prisma.products.findMany({ select: { uuid: true } });
+  // map the data to conver array of objects to array of strings
+  const productIds = productIdsData.map((product) => product.uuid);
+  // return the product ids
+  res.status(200).json(productIds)
+})
+
+
 export default router;
