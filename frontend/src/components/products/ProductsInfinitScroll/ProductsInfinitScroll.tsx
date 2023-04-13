@@ -37,7 +37,7 @@ function ProductsInfinitScroll(): JSX.Element {
 
   // fetch products from the API
   async function fetchProducts(cursor: string | null = null) {
-    const response = await fetch(`/api/products?cursor=${cursor}`)
+    const response = await fetch(`/api/products/paginatedProducts?cursor=${cursor}`)
     const productsData = await response.json()
     setProducts((prevProducts) => [...prevProducts, ...productsData.products])
     setPaginationCursor(productsData.cursor)
