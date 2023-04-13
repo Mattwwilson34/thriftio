@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { Product } from '@/types/types'
 
 // create a type for the error response
 type ErrorResponse = {
@@ -10,27 +9,21 @@ type ErrorResponse = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Product | ErrorResponse>
+  res: NextApiResponse<String[] | ErrorResponse>
 ) {
   try {
-    let productApiUrl = ''
-
-    // handle pagination if paginationCursor is null
-    const { cursor: paginationCursor } = req.query
-    if (paginationCursor === 'null') {
-      productApiUrl = `http://localhost:3000/api/products`
-    } else {
-      productApiUrl = `http://localhost:3000/api/products?cursor=${paginationCursor}`
-    }
+    // define the API url
+    const productIdsApiUrl = 'http://localhost:3000/api/productIds'
 
     // fetch the data from the API
-    const response = await fetch(productApiUrl)
+    const response = await fetch(productIdsApiUrl)
+
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
-    const data: Product = await response.json()
+    const productIds: String[] = await response.json()
     // if the data is fetched successfully, return the data
-    res.status(200).json(data)
+    res.send(productIds)
   } catch (error: any) {
     const errorResponse: ErrorResponse = {
       error: {
