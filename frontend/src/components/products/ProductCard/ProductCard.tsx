@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import { forwardRef } from 'react'
+import React, { useContext, forwardRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './product-card.module.scss'
 import { Product } from '@/types/types'
 import { ShoppingCartContext } from '@/context/ShoppingCartContext'
@@ -23,7 +23,9 @@ const ProductCard = forwardRef(
 
     return (
       <article className={styles.productCard} ref={ref}>
-        <h1 className={styles.productName}>{name}</h1>
+        <Link href={`/products/${productData.uuid}`}>
+          <h1 className={styles.productName}>{name}</h1>
+        </Link>
         <Image
           className={styles.productImage}
           src={imageUrl}
