@@ -9,7 +9,7 @@ interface ProductCardProps {
 
 const ProductCard = forwardRef(
   ({ productData }: ProductCardProps, ref): JSX.Element => {
-    const { name, price, description, imageUrl } = productData
+    const { name, price, imageUrl } = productData
 
     return (
       <article className={styles.productCard} ref={ref}>
@@ -18,11 +18,13 @@ const ProductCard = forwardRef(
           className={styles.productImage}
           src={imageUrl}
           alt={name}
-          width={300}
-          height={300}
+          width={100}
+          height={100}
         />
         <div className={styles.productPrice}>{price}</div>
-        <p className={styles.productDescription}>{description}</p>
+        <button type="button" className={styles.addToCardButton}>
+          Add To Cart
+        </button>
       </article>
     )
   }

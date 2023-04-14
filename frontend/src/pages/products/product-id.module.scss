@@ -1,26 +1,21 @@
 @use '@/styles/variables' as var;
 
-.productCard {
-  border: 1px solid var.$clr-gray-300;
-  max-width: 400px;
-  padding: var.$space-sm;
+.productSection {
+  padding: var.$space-md;
   display: flex;
   flex-direction: column;
   gap: var.$space-md;
-  background-color: var.$clr-gray-200;
-  border-radius: var.$border-radius;
-  margin: var.$space-sm 0;
-
-  img {
-    display: block;
-    margin: 0 auto;
-    border-radius: var.$border-radius;
-  }
 }
 
 .productName {
   font-size: var.$font-size-lg;
   font-weight: 700;
+}
+
+.productImage {
+  display: block;
+  margin: 0 auto;
+  border-radius: var.$border-radius;
 }
 
 .productPrice {
@@ -38,4 +33,9 @@
   border-radius: var.$border-radius;
   padding: var.$space-sm var.$space-md;
   background-color: var.$clr-blue-100;
+}
+
+.productDescriptionHeader {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
 }

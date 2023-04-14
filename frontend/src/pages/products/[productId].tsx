@@ -1,20 +1,25 @@
+import styles from './product-id.module.scss'
 import Image from 'next/image'
-import {Product} from '@/types/types'
-import { GetStaticPropsContext } from 'next';
+import { Product } from '@/types/types'
+import { GetStaticPropsContext } from 'next'
 
 interface ProductDetailPageProps {
   productData: Product
 }
 
-function ProductDetailPage({productData}: ProductDetailPageProps) {
-  const { name, price, imageUrl } = productData
+function ProductDetailPage({ productData }: ProductDetailPageProps) {
+  const { name, price, imageUrl, description } = productData
   return (
-    <>
-      <h1>The Product Detail Page</h1>
-      <h2>{name}</h2>
-      <Image src={imageUrl} alt={name} height={100} width={100} />
-      <div>{price}</div>
-    </>
+    <main>
+      <section className={styles.productSection}>
+        <h1 className={styles.productName}>{name}</h1>
+        <Image src={imageUrl} alt={name} class={styles.productImage} height={300} width={300} />
+        <div className={styles.productPrice}>{price}</div>
+        <button type='button' className={styles.addToCardButton}>Add To Card</button>
+        <h2 className={styles.productDescriptionHeader}>Description</h2>
+        <p className={styles.productDescription}>{description}</p>
+      </section>
+    </main>
   )
 }
 
@@ -33,7 +38,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-export async function getStaticProps(context:GetStaticPropsContext) {
+export async function getStaticProps(context: GetStaticPropsContext) {
   // get product id from url params
   const productId = context?.params?.productId
 
