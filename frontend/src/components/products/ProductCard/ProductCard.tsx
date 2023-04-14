@@ -3,22 +3,20 @@ import { forwardRef } from 'react'
 import Image from 'next/image'
 import styles from './product-card.module.scss'
 import { Product } from '@/types/types'
-import { ShoppingCartSystem } from '@/pages/_app'
+import { ShoppingCartContext } from '@/context/ShoppingCartContext'
 
 interface ProductCardProps {}
 
 const ProductCard = forwardRef(
   ({ productData }: ProductCardProps, ref): JSX.Element => {
     // shpping cart context
-    const { state, dispatch } = useContext(ShoppingCartSystem)
+    const { state, dispatch } = useContext(ShoppingCartContext)
 
     function handleClickAddToCart() {
       dispatch({
         type: 'ADD_TO_CART',
         payload: { productData },
       })
-      console.log('added to cart')
-      console.log(state)
     }
 
     const { name, price, imageUrl } = productData
@@ -34,7 +32,11 @@ const ProductCard = forwardRef(
           height={100}
         />
         <div className={styles.productPrice}>{price}</div>
-        <button type="button" className={styles.addToCardButton} onClick={handleClickAddToCart}>
+        <button
+          type="button"
+          className={styles.addToCardButton}
+          onClick={handleClickAddToCart}
+        >
           Add To Cart
         </button>
       </article>
