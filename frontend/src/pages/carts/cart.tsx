@@ -1,14 +1,14 @@
 import { useContext } from 'react'
 import { ShoppingCartContext } from '@/context/ShoppingCartContext'
+import {CartItems} from '@/components/cart/'
 
 function CartPage() { 
   const { state } = useContext(ShoppingCartContext)
   const { cart } = state
-  console.log(cart)
 
   return (
     <div>
-      <h1>Cart</h1>
+      <CartItems cartItems={cart} />
     </div>
   )
 }
