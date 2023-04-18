@@ -1,5 +1,5 @@
 import styles from './nav.module.scss'
-import Cart from '@/components/cart'
+import { Cart } from '@/components/cart'
 
 function Nav(): JSX.Element {
   return (
