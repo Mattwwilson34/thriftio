@@ -1,0 +1,7 @@
+@use '@/styles/variables' as var;
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  gap: var.$space-lg;
+}
