@@ -30,7 +30,12 @@ app.use(morgan('dev'));
 // HTTP header security
 app.use(helmet());
 // Cross-origin resource sharing
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
 // Cookie parser
 app.use(cookieParser());
 // use the api router
