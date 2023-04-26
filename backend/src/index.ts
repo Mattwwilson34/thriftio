@@ -1,4 +1,6 @@
 import express from 'express';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -12,12 +14,25 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 // create the express app
 const app = express();
 
+// set up session the session
+app.use(
+  session({
+    name: 'thriftio-session',
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { httpOnly: true, sameSite: false },
+  })
+);
+
 // HTTP request logger
 app.use(morgan('dev'));
 // HTTP header security
 app.use(helmet());
 // Cross-origin resource sharing
 app.use(cors());
+// Cookie parser
+app.use(cookieParser());
 // use the api router
 app.use('/api', api);
 
