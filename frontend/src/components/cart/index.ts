@@ -1,2 +1,3 @@
 import Cart from './Cart/Cart'
-export default Cart
+import CartItems from './CartItems/CartItems'
+export { Cart, CartItems }
