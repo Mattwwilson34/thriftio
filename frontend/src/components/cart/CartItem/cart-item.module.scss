@@ -3,12 +3,34 @@
 .cartItem {
   display: flex;
   align-items: center;
-  gap: var.$space-lg;
-  padding: var.$space-sm 0;
+  padding: var.$space-sm;
   border-top: 1px solid var.$clr-gray-300;
 
   &:last-of-type {
     border-bottom: 1px solid var.$clr-gray-300;
+  }
+
+  .productCheckbox {
+    transform: scale(1.2);
+  }
+
+  .productName {
+    font-size: var.$font-size-md;
+    font-weight: 400;
+  }
+
+  .price {
+    font-size: var.$font-size-md;
+    font-weight: 700;
+
+    &::before {
+    content: '$';
+    }
+  }
+
+  .inStock {
+    font-size: var.$font-size-sm;
+    color: var.$clr-blue-200;
   }
 }
 
@@ -24,6 +46,6 @@
   .cartItemInputContainer {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var.$space-xs;
   }
 }
