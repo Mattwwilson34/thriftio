@@ -11,11 +11,12 @@ function CartItem({ product }: CartItemProps) {
   const { name, price, imageUrl } = product
   return (
     <li className={styles.cartItem}>
-      <input type="checkbox" />
+      <input type="checkbox" className={styles.productCheckbox}/>
       <Image src={imageUrl} alt={name} width={100} height={100} />
       <div className={styles.cartItemInfoContainer}>
-        <h1>{name}</h1>
-        <span>In Stock</span>
+        <h1 className={styles.productName}>{name}</h1>
+        <span className={styles.price}>{price}</span>
+        <span className={styles.inStock}>In Stock</span>
         <div className={styles.cartItemInputContainer}>
           <span> Qty: </span>
           <input
@@ -29,7 +30,6 @@ function CartItem({ product }: CartItemProps) {
           <Link href="/">Delete</Link>
         </div>
       </div>
-      <span>{price}</span>
     </li>
   )
 }
