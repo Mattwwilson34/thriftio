@@ -64,4 +64,16 @@ router.get(
   }
 );
 
+router.post('/shopping-cart-session-update', (req: SessionRequest, res: Response): void => {
+  req.session.shoppingCart = req.body;
+  res.send(JSON.stringify('ok from shopping-cart'));
+})
+
+router.get('/cart', (req: SessionRequest, res: Response): void => {
+  if (!req.session.shoppingCart) {
+    req.session.shoppingCart = [];
+  }
+  res.send(JSON.stringify(req.session.shoppingCart));
+})
+
 export default router;
