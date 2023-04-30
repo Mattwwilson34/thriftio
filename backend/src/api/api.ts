@@ -76,4 +76,15 @@ router.get('/cart', (req: SessionRequest, res: Response): void => {
   res.send(JSON.stringify(req.session.shoppingCart));
 })
 
+router.get('/sessions', (req:any, res) => {
+  req.sessionStore.all((err, sessions) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error getting sessions');
+    }
+    console.log(sessions);
+    res.send('Sessions logged to console');
+  });
+});
+
 export default router;
