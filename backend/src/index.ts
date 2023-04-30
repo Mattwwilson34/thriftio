@@ -14,30 +14,33 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 // create the express app
 const app = express();
 
-// set up session the session
+// HTTP request logger
+app.use(morgan('dev'));
+// HTTP header security
+app.use(helmet());
+// body parser
+app.use(express.json());
+// Cookie parser
+app.use(cookieParser());
+// Cross-origin resource sharing
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+    credentials: true,
+  })
+);
+// set up session the application session
 app.use(
   session({
     name: 'thriftio-session',
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { httpOnly: true, sameSite: false },
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60, sameSite: false, secure: false },
   })
 );
 
-// HTTP request logger
-app.use(morgan('dev'));
-// HTTP header security
-app.use(helmet());
-// Cross-origin resource sharing
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
-  })
-);
-// Cookie parser
-app.use(cookieParser());
 // use the api router
 app.use('/api', api);
 
