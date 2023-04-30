@@ -2,30 +2,38 @@ import express from 'express';
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
+interface SessionRequest extends Request {
+  session: any; // replace `any` with the type definition of your session object
+}
+
 const prisma = new PrismaClient();
 const router = express.Router();
 
 // get 10 products paginated with cursor
-router.get('/products', async (req: Request, res: Response): Promise<void> => {
-  const cursor = req.query.cursor as string | undefined;
-  const take = 10;
+router.get(
+  '/products',
+  async (req: SessionRequest, res: Response): Promise<void> => {
 
-  const products = await prisma.products.findMany({
-    take,
-    skip: cursor ? 1 : 0,
-    cursor: cursor ? { uuid: cursor } : undefined,
-  });
+    const cursor = req.query.cursor as string | undefined;
+    const take = 10;
 
-  const hasNextPage = await prisma.products.count({
-    where: {
-      uuid: { gt: products[products.length - 1].uuid },
-    },
-  });
+    const products = await prisma.products.findMany({
+      take,
+      skip: cursor ? 1 : 0,
+      cursor: cursor ? { uuid: cursor } : undefined,
+    });
 
-  const nextCursor = hasNextPage ? products[products.length - 1].uuid : null;
+    const hasNextPage = await prisma.products.count({
+      where: {
+        uuid: { gt: products[products.length - 1].uuid },
+      },
+    });
 
-  res.json({ products, cursor: nextCursor });
-});
+    const nextCursor = hasNextPage ? products[products.length - 1].uuid : null;
+
+    res.json({ products, cursor: nextCursor });
+  }
+);
 
 // get array of all product uuids
 router.get(
@@ -52,7 +60,7 @@ router.get(
         uuid: productId,
       },
     });
-    res.send(productData)
+    res.send(productData);
   }
 );
 
