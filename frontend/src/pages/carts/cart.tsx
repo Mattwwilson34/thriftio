@@ -4,11 +4,11 @@ import {CartItems} from '@/components/cart/'
 
 function CartPage() { 
   const { state } = useContext(ShoppingCartContext)
-  const { cart } = state
+  const { shoppingCart } = state
 
   return (
     <div>
-      <CartItems cartItems={cart} />
+      <CartItems cartItems={shoppingCart} />
     </div>
   )
 }
