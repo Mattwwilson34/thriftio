@@ -17,12 +17,9 @@ export default async function handler(
 
     // handle pagination if paginationCursor is null
     const { cursor: paginationCursor } = req.query
-    console.log('cursor', paginationCursor)
     if (paginationCursor === 'null' || paginationCursor === undefined) {
-      console.log('sending short url')
       productApiUrl = `http://localhost:3000/api/products`
     } else {
-      console.log('sending long url')
       productApiUrl = `http://localhost:3000/api/products?cursor=${paginationCursor}`
     }
 
