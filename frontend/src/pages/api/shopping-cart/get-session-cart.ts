@@ -12,25 +12,15 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    console.log('line:17:', req.cookies)
-
-    const response = await fetch(
-      'http://localhost:3000/api/cart',
-      {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Cookie': req.headers.cookie ?? '',
-        },
-      }
-    )
-
+    const response = await fetch('http://localhost:3000/api/cart', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        Cookie: req.headers.cookie ?? '',
+      },
+    })
     const shoppingCartSessionData = await response.json()
-
-    console.log('line:32:', shoppingCartSessionData)
     res.send(JSON.stringify(shoppingCartSessionData))
-
-
   } catch (error: any) {
     const errorResponse: ErrorResponse = {
       error: {
