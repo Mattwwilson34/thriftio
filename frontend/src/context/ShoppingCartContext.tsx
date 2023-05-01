@@ -11,7 +11,7 @@ interface Action {
 }
 
 interface State {
-  cart: Product[]
+  shoppingCart: Product[] | []
 }
 
 interface ShoppingCartContextType {
@@ -21,24 +21,39 @@ interface ShoppingCartContextType {
 
 // create shopping cart context
 const ShoppingCartContext = createContext<ShoppingCartContextType>({
-  state: { cart: [] },
+  state: { shoppingCart: [] },
   dispatch: () => {},
 })
 
 // initialize state
 const initailState: State = {
-  cart: [],
+  shoppingCart: [],
+}
+
+// update shopping cart session on server
+async function updateCart(cart: Product[]) {
+  await fetch('/api/shopping-cart-session-update', {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(cart),
+  })
 }
 
 function ShopingCartContextProvider({ children }: Props) {
   // create reducer
   const reducers = (state: State, action: Action) => {
+    let newCart = [...state.shoppingCart]
     switch (action.type) {
+      case 'GET_CART':
+        const { shoppingCart } = action.payload
+        newCart = [...shoppingCart]
+        return { ...state, shoppingCart: newCart }
       case 'ADD_TO_CART':
         const { productData } = action.payload
-        const { cart } = state
-        const newCart = [...cart, productData]
-        return { ...state, cart: newCart }
+        newCart = [...newCart, productData]
+        updateCart(newCart)
+        return { ...state, shoppingCart: newCart }
       default:
         return state
     }

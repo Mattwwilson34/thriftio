@@ -1,4 +1,6 @@
 import express from 'express';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -16,8 +18,29 @@ const app = express();
 app.use(morgan('dev'));
 // HTTP header security
 app.use(helmet());
+// body parser
+app.use(express.json());
+// Cookie parser
+app.use(cookieParser());
 // Cross-origin resource sharing
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+    credentials: true,
+  })
+);
+// set up session the application session
+app.use(
+  session({
+    name: 'thriftio-session',
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60, sameSite: false, secure: false },
+  })
+);
+
 // use the api router
 app.use('/api', api);
 

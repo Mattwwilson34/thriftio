@@ -10,7 +10,7 @@ interface ProductCardProps {}
 const ProductCard = forwardRef(
   ({ productData }: ProductCardProps, ref): JSX.Element => {
     // shpping cart context
-    const { state, dispatch } = useContext(ShoppingCartContext)
+    const { dispatch } = useContext(ShoppingCartContext)
 
     function handleClickAddToCart() {
       dispatch({
