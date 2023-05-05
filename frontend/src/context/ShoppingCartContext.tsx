@@ -59,6 +59,18 @@ function ShopingCartContextProvider({ children }: Props) {
         }
         updateCart(newCart)
         return { ...state, shoppingCart: newCart }
+      case 'UPDATE_CART_QUANTITY':
+        const { uuid, quantity } = action.payload.product
+        const productToUpdateIndex = newCart.findIndex((item) => item.uuid === uuid)
+        if (productToUpdateIndex !== -1) {
+          newCart[productToUpdateIndex].quantity = quantity
+          console.log(newCart)
+          updateCart(newCart)
+          return { ...state, shoppingCart: newCart }
+        } else {
+          console.log('product not found')
+          return state
+        }
       default:
         return state
     }
