@@ -13,6 +13,19 @@
   font-size: var.$font-size-xxl;
   font-weight: 700;
   letter-spacing: 0.0125rem;
+
+  a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      color: var.$clr-blue-200;
+
+      .headerInterpunct {
+        color: black;
+      }
+    }
+  }
 }
 
 .headerInterpunct {
