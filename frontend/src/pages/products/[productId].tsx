@@ -44,7 +44,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 
   // get product data from db uding id and nextjs api
   const productDataJson = await fetch(
-    `http://localhost:3001/api/products/${productId}`
+    `http://localhost:3000/api/product/${productId}`
   )
   // conver form json
   const productData = await productDataJson.json()
