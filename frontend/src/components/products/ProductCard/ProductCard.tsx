@@ -23,17 +23,17 @@ const ProductCard = forwardRef(
 
     return (
       <article className={styles.productCard} ref={ref}>
-        <Link href={`/products/${productData.uuid}`}>
-          <h1 className={styles.productName}>{name}</h1>
-        </Link>
+        <Link href={`/products/${productData.uuid}`} className={styles.productCardLink}>
         <Image
           className={styles.productImage}
           src={imageUrl}
           alt={name}
-          width={100}
-          height={100}
+          width={150}
+          height={150}
         />
+          <h1 className={styles.productName}>{name}</h1>
         <div className={styles.productPrice}>{price}</div>
+        </Link>
         <button
           type="button"
           className={styles.addToCardButton}
