@@ -51,7 +51,12 @@ function ShopingCartContextProvider({ children }: Props) {
         return { ...state, shoppingCart: newCart }
       case 'ADD_TO_CART':
         const { productData } = action.payload
-        newCart = [...newCart, productData]
+        if (newCart.find((item) => item.uuid === productData.uuid)) {
+          productData.quantity += 1;
+        } else {
+          productData.quantity = 1;
+          newCart = [...newCart, productData]
+        }
         updateCart(newCart)
         return { ...state, shoppingCart: newCart }
       default:
