@@ -1,4 +1,4 @@
-import {ChangeEventHandler, useContext, useState } from 'react'
+import {useContext, useState } from 'react'
 import styles from './cart-item.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -15,24 +15,28 @@ interface CartItemProps {
 
 function CartItem({ product }: CartItemProps) {
   const { dispatch } = useContext(ShoppingCartContext)
-  const [quantityUpdated, setQuantityUpdated] = useState(false)
+  const [productQuantity, setProductQuantity] = useState(product.quantity)
   const { name, price, imageUrl, quantity } = product
 
   function updateCartQuantity(): void {
+    const updatedProduct = { ...product }
+    updatedProduct.quantity = productQuantity
     dispatch({
       type: 'UPDATE_CART_QUANTITY',
-      payload: { product },
+      payload: { updatedProduct },
     })
   }
   
   function handleCartQuantityChange(e:React.ChangeEvent<HTMLInputElement>): void {
     const newQuantity = parseInt(e.target.value)
     if (newQuantity > 0) {
-      product.quantity = newQuantity
-      setQuantityUpdated(true)
+      setProductQuantity(newQuantity)
+    } else {
+      setProductQuantity(quantity)
     }
   }
 
+  const quantityChanged = productQuantity !== quantity
 
   return (
     <li className={styles.cartItem}>
@@ -50,10 +54,10 @@ function CartItem({ product }: CartItemProps) {
             name="cartItemQuantity"
             min="0"
             max="100"
-            defaultValue={quantity}
+            value={productQuantity}
             onChange={handleCartQuantityChange}
           />
-          {quantityUpdated && <button className={styles.quantityUpdated} onClick={updateCartQuantity}>Update Cart</button>}
+          {quantityChanged && <button className={styles.quantityUpdated} onClick={updateCartQuantity}>Update Cart</button>}
           <Link href="/">Delete</Link>
         </div>
       </div>
