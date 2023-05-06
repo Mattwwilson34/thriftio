@@ -29,7 +29,10 @@ function Cart() {
   }, [])
 
   const { shoppingCart } = state
-  const numberOfItemsInCart = shoppingCart.reduce((prev, curr) => prev + curr.quantity, 0)
+  const numberOfItemsInCart = shoppingCart.reduce(
+    (prev, curr) => prev + curr.quantity,
+    0
+  )
 
   return (
     <>
