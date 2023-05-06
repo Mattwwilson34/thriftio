@@ -1,0 +1,19 @@
+@use '@/styles/variables' as var;
+
+.cartTotal {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 var.$space-md;
+}
+
+.subtotal {
+  font-size: var.$font-size-xl;
+
+  .subtotalValue {
+    font-weight: 600;
+
+    &::before {
+      content: ' $'
+    }
+  }
+}
