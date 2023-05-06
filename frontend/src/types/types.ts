@@ -9,3 +9,7 @@ export type Product = {
   brand: string
   available: boolean
 }
+
+export type ShoppingCartProduct = Product & {
+  quantity: number
+}
