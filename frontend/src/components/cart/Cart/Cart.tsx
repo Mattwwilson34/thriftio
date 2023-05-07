@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import shoppingCartIcon from '../../../../public/icons/shopping-cart.svg'
 import { ShoppingCartContext } from '@/context/ShoppingCartContext'
+import { ShoppingCartProduct } from '@/types/types'
 
 function Cart() {
   const { state, dispatch } = useContext(ShoppingCartContext)
@@ -28,9 +29,9 @@ function Cart() {
     checkForCart()
   }, [])
 
-  const { shoppingCart } = state
+  const shoppingCart: ShoppingCartProduct[] = state.shoppingCart
   const numberOfItemsInCart = shoppingCart.reduce(
-    (prev, curr) => prev + curr.quantity,
+    (prev: number, curr: ShoppingCartProduct) => prev + curr.quantity,
     0
   )
 
