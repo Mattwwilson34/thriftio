@@ -1,0 +1,2 @@
+import CheckoutInformationAccordian from './CheckoutInformationAccordian/CheckoutInformationAccordian'
+export default CheckoutInformationAccordian
