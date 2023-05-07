@@ -1,6 +1,5 @@
 import {useContext, useState } from 'react'
 import styles from './cart-item.module.scss'
-import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCartContext } from '@/context/ShoppingCartContext'
 import { Product } from '@/types/types'
