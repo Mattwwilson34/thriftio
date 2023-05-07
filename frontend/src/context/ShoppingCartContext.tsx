@@ -1,4 +1,4 @@
-import { Product } from '@/types/types'
+import { Product, ShoppingCartProduct } from '@/types/types'
 import React, { ReactNode, createContext, useReducer } from 'react'
 
 interface Props {
@@ -11,7 +11,7 @@ interface Action {
 }
 
 interface State {
-  shoppingCart: Product[] | []
+  shoppingCart: ShoppingCartProduct[] | []
 }
 
 interface ShoppingCartContextType {
@@ -43,12 +43,18 @@ async function updateCart(cart: Product[]) {
 function ShopingCartContextProvider({ children }: Props) {
   // create reducer
   const reducers = (state: State, action: Action) => {
+    // create new cart array
     let newCart = [...state.shoppingCart]
+
     switch (action.type) {
+
+      // get cart from session
       case 'GET_CART':
         const { shoppingCart } = action.payload
         newCart = [...shoppingCart]
         return { ...state, shoppingCart: newCart }
+
+      // add product to cart
       case 'ADD_TO_CART':
         const { productData } = action.payload
         if (newCart.find((item) => item.uuid === productData.uuid)) {
@@ -59,6 +65,15 @@ function ShopingCartContextProvider({ children }: Props) {
         }
         updateCart(newCart)
         return { ...state, shoppingCart: newCart }
+
+      // remove product from cart
+      case 'REMOVE_FROM_CART':
+        const { uuid: uuidToRemove } = action.payload.productToRemove
+        newCart = newCart.filter((item) => item.uuid !== uuidToRemove)
+        updateCart(newCart)
+        return { ...state, shoppingCart: newCart }
+
+      // update product quantity in cart
       case 'UPDATE_CART_QUANTITY':
         const { uuid, quantity } = action.payload.updatedProduct
         const productToUpdateIndex = newCart.findIndex((item) => item.uuid === uuid)
@@ -70,6 +85,8 @@ function ShopingCartContextProvider({ children }: Props) {
           console.log('product not found')
           return state
         }
+
+      // clear cart
       default:
         return state
     }

@@ -1,6 +1,5 @@
 import {useContext, useState } from 'react'
 import styles from './cart-item.module.scss'
-import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCartContext } from '@/context/ShoppingCartContext'
 import { Product } from '@/types/types'
@@ -36,6 +35,14 @@ function CartItem({ product }: CartItemProps) {
     }
   }
 
+  function removeProductFromCart(): void {
+    const productToRemove = { ...product }
+    dispatch({
+      type: 'REMOVE_FROM_CART',
+      payload: { productToRemove },
+    })
+  }
+
   const quantityChanged = productQuantity !== quantity
 
   return (
@@ -58,7 +65,7 @@ function CartItem({ product }: CartItemProps) {
             onChange={handleCartQuantityChange}
           />
           {quantityChanged && <button className={styles.quantityUpdated} onClick={updateCartQuantity}>Update Cart</button>}
-          <Link href="/">Delete</Link>
+          <button type='button' onClick={removeProductFromCart}>Remove</button>
         </div>
       </div>
     </li>
