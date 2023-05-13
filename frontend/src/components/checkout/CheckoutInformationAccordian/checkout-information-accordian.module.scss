@@ -1,5 +1,43 @@
+@use '@/styles/variables' as var;
+
 .checkoutInformationAccordian {
   margin: 0 auto;
   max-width: 400px;
   border: 1px solid #ccc;
+}
+
+.shippingAddressForm, .creditCardForm {
+  display: flex;
+  flex-direction: column;
+  padding: var.$space-sm;
+
+  & label,
+  & input,
+  & select {
+    height: 70px;
+    font-size: var.$font-size-md;
+    font-weight: 500;
+    border-radius: var.$border-radius;
+  }
+
+  & label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var.$space-sm;
+  }
+
+  & input,
+  & select {
+    margin-top: calc(var.$space-sm / 2);
+    border: 1px solid var.$clr-gray-300;
+  }
+
+  & input {
+    padding: 0 var.$space-sm;
+
+    &:focus {
+      outline: none;
+      border: 1px solid var.$clr-blue-200;
+    }
+  }
 }
