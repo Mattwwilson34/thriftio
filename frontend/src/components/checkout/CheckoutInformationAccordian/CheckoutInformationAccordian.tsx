@@ -21,6 +21,9 @@ function CheckoutInformationAccordian() {
   const [state, setState] = useState('NC')
   const [zipCode, setZipCode] = useState('27703')
   const [country, setCountry] = useState('United States')
+  const [cardNumber, setCardNumber] = useState('4266-5436-5698-9765')
+  const [cardExpiration, setCardExpiration] = useState('03/17')
+  const [securityCode, setSecurityCode] = useState('123')
 
   function validateAddress() {
     if (!name || !address || !city || !state || !zipCode || !country) {
@@ -70,17 +73,28 @@ function CheckoutInformationAccordian() {
         </form>
       </AccordianWrapper>
 
-        { !creditCardFormOpen && (
+      {!creditCardFormOpen && (
         <>
           <button onClick={toggleCreditForm}>Edit Payment Method</button>
         </>
-        )}
-        <AccordianWrapper open={creditCardFormOpen}>
-      <form className={styles.creditCardForm} onSubmit={preventDefault}>
-          <CreditCardInputs />
-          <input type="submit" value="Continue to Order Review" onClick={toggleCreditForm}/>
-      </form>
-       </AccordianWrapper>
+      )}
+      <AccordianWrapper open={creditCardFormOpen}>
+        <form className={styles.creditCardForm} onSubmit={preventDefault}>
+          <CreditCardInputs
+            cardNumber={cardNumber}
+            setCardNumber={setCardNumber}
+            cardExpiration={cardExpiration}
+            setCardExpiration={setCardExpiration}
+            securityCode={securityCode}
+            setSecurityCode={setSecurityCode}
+          />
+          <input
+            type="submit"
+            value="Continue to Order Review"
+            onClick={toggleCreditForm}
+          />
+        </form>
+      </AccordianWrapper>
     </div>
   )
 }
