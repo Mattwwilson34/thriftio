@@ -4,5 +4,6 @@ import CityInput from './CityInput/CityInput'
 import StateInput from './StateInput/StateInput'
 import ZipCodeInput from './ZipCodeInput/ZipCodeInput'
 import CountryInput from './CountryInput/CountryInput'
+import CreditCardInputs from './CreditCardInputs/CreditCardInputs'
 
-export { NameInput, AddressInput, CityInput, StateInput, ZipCodeInput, CountryInput}
+export { NameInput, AddressInput, CityInput, StateInput, ZipCodeInput, CountryInput, CreditCardInputs}
