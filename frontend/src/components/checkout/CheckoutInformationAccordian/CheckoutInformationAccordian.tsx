@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import styles from './checkout-information-accordian.module.scss'
+import { ShoppingCartContext } from '@/context/ShoppingCartContext'
 import AccordianWrapper from '@/components/accordian-wrapper/AccordianWrapper'
 import AddressPreview from '../AddressPreview/AddressPreview'
 import CreditCardPreview from '../CreditCardPreview/CreditCardPreview'
+import ProductCheckoutCard from '../ProductCheckoutCard/ProductCheckoutCard'
 import {
   NameInput,
   AddressInput,
@@ -14,6 +16,7 @@ import {
 } from '@/components/form-inputs'
 
 function CheckoutInformationAccordian() {
+  // checkout form state
   const [creditCardFormOpen, setCreditCardFormOpen] = useState(true)
   const [addressFormOpen, setAddressFormOpen] = useState(true)
   const [name, setName] = useState('Matt Wilson')
@@ -25,6 +28,10 @@ function CheckoutInformationAccordian() {
   const [cardNumber, setCardNumber] = useState('4266-5436-5698-9765')
   const [cardExpiration, setCardExpiration] = useState('03/17')
   const [securityCode, setSecurityCode] = useState('123')
+
+  // shopping cart context
+  const { state: shoppingCartState } = useContext(ShoppingCartContext)
+  const { shoppingCart } = shoppingCartState
 
   function validateAddress() {
     if (!name || !address || !city || !state || !zipCode || !country) {
@@ -97,6 +104,9 @@ function CheckoutInformationAccordian() {
           />
         </form>
       </AccordianWrapper>
+      {shoppingCart.map((product) => {
+        return <ProductCheckoutCard product={product} />
+      })}
     </div>
   )
 }
