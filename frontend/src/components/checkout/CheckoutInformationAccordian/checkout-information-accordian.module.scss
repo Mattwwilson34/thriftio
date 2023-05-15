@@ -1,10 +1,10 @@
 @use '@/styles/variables' as var;
 
 .checkoutInformationAccordian {
-  margin: 0 auto;
+  margin: var.$space-sm auto;
   max-width: 400px;
   border: 1px solid #ccc;
-  padding: var.$space-sm;
+  padding: 0 var.$space-sm;
 
   button {
     margin-bottom: var.$space-sm;
@@ -14,7 +14,7 @@
 .checkoutSectionHeader {
   font-size: var.$font-size-lg;
   font-weight: 700;
-  margin-bottom: var.$space-sm;
+  margin: var.$space-sm 0;
 }
 
 .orderPlacementContainer {
