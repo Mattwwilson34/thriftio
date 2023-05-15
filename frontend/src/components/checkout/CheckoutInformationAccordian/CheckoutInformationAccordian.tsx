@@ -50,21 +50,19 @@ function CheckoutInformationAccordian() {
 
   return (
     <div className={styles.checkoutInformationAccordian}>
-
       {/* shipping address */}
       <h2 className={styles.checkoutSectionHeader}>Shipping Address</h2>
-      {!addressFormOpen && (
-        <>
-          <AddressPreview
-            name={name}
-            address={address}
-            city={city}
-            state={state}
-            zipCode={zipCode}
-          />
-          <button onClick={toggleAddressForm}>Edit Shipping Address</button>
-        </>
-      )}
+      <AddressPreview
+        name={name}
+        address={address}
+        city={city}
+        state={state}
+        zipCode={zipCode}
+      />
+      <button onClick={toggleAddressForm}>
+        {addressFormOpen ? 'Proceed to payment' : 'Edit shipping details'}
+      </button>
+
       <AccordianWrapper open={addressFormOpen}>
         <form className={styles.shippingAddressForm} onSubmit={preventDefault}>
           <NameInput name={name} setName={setName} />
@@ -77,25 +75,27 @@ function CheckoutInformationAccordian() {
           <CountryInput country={country} setCountry={setCountry} required />
           <input
             type="submit"
-            value="Continue to payment"
+            value="Proceed to payment"
             onClick={() => setAddressFormOpen(!addressFormOpen)}
             disabled={!formIsValid}
           />
         </form>
       </AccordianWrapper>
 
+      <hr />
+
       {/* payment method */}
       <h2 className={styles.checkoutSectionHeader}>Payment Method</h2>
-      {!creditCardFormOpen && (
-        <>
-          <CreditCardPreview
-            cardNumber={cardNumber}
-            cardExpiration={cardExpiration}
-            securityCode={securityCode}
-          />
-          <button onClick={toggleCreditForm}>Edit Payment Method</button>
-        </>
-      )}
+      <CreditCardPreview
+        cardNumber={cardNumber}
+        cardExpiration={cardExpiration}
+        securityCode={securityCode}
+      />
+      <button onClick={toggleCreditForm}>
+        {creditCardFormOpen
+          ? 'Proceed to order review'
+          : 'Edit payment details'}
+      </button>
       <AccordianWrapper open={creditCardFormOpen}>
         <form className={styles.creditCardForm} onSubmit={preventDefault}>
           <CreditCardInputs
@@ -108,11 +108,13 @@ function CheckoutInformationAccordian() {
           />
           <input
             type="submit"
-            value="Continue to Order Review"
+            value="Proceed to order review"
             onClick={toggleCreditForm}
           />
         </form>
       </AccordianWrapper>
+
+      <hr />
 
       {/* product preview */}
       <h2 className={styles.checkoutSectionHeader}>Order Review</h2>
