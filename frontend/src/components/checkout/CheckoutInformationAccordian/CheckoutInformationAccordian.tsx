@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './checkout-information-accordian.module.scss'
 import AccordianWrapper from '@/components/accordian-wrapper/AccordianWrapper'
 import AddressPreview from '../AddressPreview/AddressPreview'
+import CreditCardPreview from '../CreditCardPreview/CreditCardPreview'
 import {
   NameInput,
   AddressInput,
@@ -75,6 +76,7 @@ function CheckoutInformationAccordian() {
 
       {!creditCardFormOpen && (
         <>
+          <CreditCardPreview cardNumber={cardNumber} cardExpiration={cardExpiration} securityCode={securityCode} />
           <button onClick={toggleCreditForm}>Edit Payment Method</button>
         </>
       )}
