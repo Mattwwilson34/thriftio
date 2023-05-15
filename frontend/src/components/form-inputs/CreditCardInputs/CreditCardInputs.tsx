@@ -18,6 +18,7 @@ function CreditCardInputs({
   return (
     <>
       <label htmlFor="cardNumber">
+        Card Number
         <input
           type="text"
           id="cardNumber"
@@ -28,6 +29,7 @@ function CreditCardInputs({
         />
       </label>
       <label htmlFor="cardExpiration">
+        Card Expiration
         <input
           type="text"
           id="cardExpiration"
@@ -38,6 +40,7 @@ function CreditCardInputs({
         />
       </label>
       <label htmlFor="securityCode">
+        Security Code
         <input
           type="text"
           id="securityCode"
