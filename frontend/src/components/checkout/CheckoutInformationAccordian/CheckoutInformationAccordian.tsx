@@ -50,6 +50,7 @@ function CheckoutInformationAccordian() {
 
   return (
     <div className={styles.checkoutInformationAccordian}>
+            <h2 className={styles.checkoutSectionHeader}>Shipping Address</h2>
       {!addressFormOpen && (
         <>
           <AddressPreview
@@ -81,9 +82,14 @@ function CheckoutInformationAccordian() {
         </form>
       </AccordianWrapper>
 
+      <h2 className={styles.checkoutSectionHeader}>Payment Method</h2>
       {!creditCardFormOpen && (
         <>
-          <CreditCardPreview cardNumber={cardNumber} cardExpiration={cardExpiration} securityCode={securityCode} />
+          <CreditCardPreview
+            cardNumber={cardNumber}
+            cardExpiration={cardExpiration}
+            securityCode={securityCode}
+          />
           <button onClick={toggleCreditForm}>Edit Payment Method</button>
         </>
       )}
@@ -104,6 +110,7 @@ function CheckoutInformationAccordian() {
           />
         </form>
       </AccordianWrapper>
+      <h2 className={styles.checkoutSectionHeader}>Order Review</h2>
       {shoppingCart.map((product) => {
         return <ProductCheckoutCard product={product} />
       })}

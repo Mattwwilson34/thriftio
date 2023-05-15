@@ -6,6 +6,12 @@
   border: 1px solid #ccc;
 }
 
+.checkoutSectionHeader {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+  margin-top: var.$space-md;
+}
+
 .shippingAddressForm, .creditCardForm {
   display: flex;
   flex-direction: column;
