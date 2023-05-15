@@ -47,7 +47,6 @@ function ShopingCartContextProvider({ children }: Props) {
     let newCart = [...state.shoppingCart]
 
     switch (action.type) {
-
       // get cart from session
       case 'GET_CART':
         const { shoppingCart } = action.payload
@@ -58,9 +57,9 @@ function ShopingCartContextProvider({ children }: Props) {
       case 'ADD_TO_CART':
         const { productData } = action.payload
         if (newCart.find((item) => item.uuid === productData.uuid)) {
-          productData.quantity += 1;
+          productData.quantity += 1
         } else {
-          productData.quantity = 1;
+          productData.quantity = 1
           newCart = [...newCart, productData]
         }
         updateCart(newCart)
@@ -76,7 +75,9 @@ function ShopingCartContextProvider({ children }: Props) {
       // update product quantity in cart
       case 'UPDATE_CART_QUANTITY':
         const { uuid, quantity } = action.payload.updatedProduct
-        const productToUpdateIndex = newCart.findIndex((item) => item.uuid === uuid)
+        const productToUpdateIndex = newCart.findIndex(
+          (item) => item.uuid === uuid
+        )
         if (productToUpdateIndex !== -1) {
           newCart[productToUpdateIndex].quantity = quantity
           updateCart(newCart)
