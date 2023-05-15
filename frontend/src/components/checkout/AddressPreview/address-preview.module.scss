@@ -1,0 +1,8 @@
+@use '@/styles/variables' as var;
+
+.addressPreview {
+
+  p {
+    margin: var.$space-xs 0;
+  }
+}

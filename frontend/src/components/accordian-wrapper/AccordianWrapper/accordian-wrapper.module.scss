@@ -1,0 +1,13 @@
+.accordianWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s ease-in-out;
+}
+
+.accordianContainer {
+  overflow: hidden;
+}
+
+.open {
+  grid-template-rows: 1fr;
+}

@@ -1,0 +1,60 @@
+@use '@/styles/variables' as var;
+
+.orderDetails {
+  border: 1px solid #ccc;
+  position: absolute;
+  right: var.$space-sm;
+  max-width: 350px;
+  padding: var.$space-sm;
+}
+
+.placeOrderButton {
+  width: 100%;
+  padding: var.$space-xs 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.orderDetailsHeader {
+  margin: var.$space-sm 0;
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+}
+
+.orderTotalHeader {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+}
+
+.orderDetailsGrid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: var.$space-xs;
+
+  .alignRight {
+    justify-self: end;
+  }
+
+  p {
+    font-size: var.$font-size-sm;
+  }
+
+  .salesTaxDivider {
+    grid-column: 2;
+    width: 100%;
+    margin: 0;
+  }
+
+  .orderTotalDivider {
+    grid-column: 1 / span 2;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .orderTotal {
+    font-size: var.$font-size-lg;
+    font-weight: 700;
+  }
+}

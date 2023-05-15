@@ -1,0 +1,63 @@
+@use '@/styles/variables' as var;
+
+.checkoutInformationAccordian {
+  margin: var.$space-sm auto;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  padding: 0 var.$space-sm;
+
+  button {
+    margin-bottom: var.$space-sm;
+  }
+}
+
+.checkoutSectionHeader {
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+  margin: var.$space-sm 0;
+}
+
+.orderPlacementContainer {
+  display: flex;
+  gap: var.$space-sm;
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+  color: #b12707;
+}
+
+.shippingAddressForm,
+.creditCardForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var.$space-md;
+
+  & label,
+  & input,
+  & select {
+    height: 70px;
+    font-size: var.$font-size-md;
+    font-weight: 500;
+    border-radius: var.$border-radius;
+  }
+
+  & label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var.$space-sm;
+  }
+
+  & input,
+  & select {
+    margin-top: calc(var.$space-sm / 2);
+    border: 1px solid var.$clr-gray-300;
+  }
+
+  & input {
+    padding: 0 var.$space-sm;
+
+    &:focus {
+      outline: none;
+      border: 1px solid var.$clr-blue-200;
+    }
+  }
+}

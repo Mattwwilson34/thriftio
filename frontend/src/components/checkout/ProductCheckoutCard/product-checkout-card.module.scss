@@ -1,0 +1,17 @@
+@use '@/styles/variables' as var;
+
+.productCheckoutCard {
+  margin: var.$space-md 0;
+  display: flex;
+
+  .productInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var.$space-xs;
+  }
+
+  .productName {
+    font-weight: 500;
+  }
+}
