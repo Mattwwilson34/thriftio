@@ -4,18 +4,24 @@
   margin: 0 auto;
   max-width: 400px;
   border: 1px solid #ccc;
+  padding: var.$space-sm;
+
+  button {
+    margin-bottom: var.$space-sm;
+  }
 }
 
 .checkoutSectionHeader {
   font-size: var.$font-size-lg;
   font-weight: 700;
-  margin-top: var.$space-md;
+  margin-bottom: var.$space-sm;
 }
 
-.shippingAddressForm, .creditCardForm {
+.shippingAddressForm,
+.creditCardForm {
   display: flex;
   flex-direction: column;
-  padding: var.$space-sm;
+  margin-bottom: var.$space-md;
 
   & label,
   & input,
