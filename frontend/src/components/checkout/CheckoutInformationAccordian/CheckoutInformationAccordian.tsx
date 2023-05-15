@@ -27,13 +27,17 @@ function CheckoutInformationAccordian() {
   const [state, setState] = useState('NC')
   const [zipCode, setZipCode] = useState('27703')
   const [country, setCountry] = useState('United States')
+  const [stateSalesTax, setStateSalesTax] = useState(1.0)
   const [cardNumber, setCardNumber] = useState('4266-5436-5698-9765')
   const [cardExpiration, setCardExpiration] = useState('03/17')
   const [securityCode, setSecurityCode] = useState('123')
 
   // shopping cart context
   const { state: shoppingCartState } = useContext(ShoppingCartContext)
-  const { shoppingCart } = shoppingCartState
+  // TODO: fix
+  // need to figure out why when typing this to ShoppingCartProduct
+  // I am unable to call reduce without throwing a TS error
+  const shoppingCart: any[] = shoppingCartState.shoppingCart
 
   function validateAddress() {
     if (!name || !address || !city || !state || !zipCode || !country) {
@@ -56,10 +60,23 @@ function CheckoutInformationAccordian() {
 
   let formIsValid = validateAddress()
 
+  // get sales tax from zipcode via API
+  async function handleZipCodeBlur() {
+    const result = await fetch(`https://api.api-ninjas.com/v1/salestax?zip_code=${zipCode}`, {
+      method: 'GET',
+      headers: {
+        'x-api-key': 'SF6lG/NFT0e69KXOAT8o3w==5nAo7rnkepsATrYH'
+      }
+    })
+    const [salesTaxData] = await result.json()
+    const salesTaxRate = salesTaxData.total_rate
+    setStateSalesTax(salesTaxRate)
+  }
+
   return (
     <div className={styles.checkoutInformationAccordian}>
       {/* order details */}
-      <OderDetails />
+      <OderDetails stateSalesTax={stateSalesTax}/>
       {/* shipping address */}
       <h2 className={styles.checkoutSectionHeader}>Shipping Address</h2>
       <AddressPreview
@@ -80,7 +97,7 @@ function CheckoutInformationAccordian() {
           <div>
             <CityInput city={city} setCity={setCity} required />
             <StateInput state={state} setState={setState} required />
-            <ZipCodeInput zipCode={zipCode} setZipCode={setZipCode} required />
+            <ZipCodeInput zipCode={zipCode} setZipCode={setZipCode} required handleBlur={handleZipCodeBlur}/>
           </div>
           <CountryInput country={country} setCountry={setCountry} required />
           <input

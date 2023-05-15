@@ -8,6 +8,15 @@
   padding: var.$space-sm;
 }
 
+.placeOrderButton {
+  width: 100%;
+  padding: var.$space-xs 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .orderDetailsHeader {
   margin: var.$space-sm 0;
   font-size: var.$font-size-lg;
@@ -41,6 +50,11 @@
   .orderTotalDivider {
     grid-column: 1 / span 2;
     width: 100%;
-    margin-top:0;
+    margin-top: 0;
+  }
+
+  .orderTotal {
+    font-size: var.$font-size-lg;
+    font-weight: 700;
   }
 }
