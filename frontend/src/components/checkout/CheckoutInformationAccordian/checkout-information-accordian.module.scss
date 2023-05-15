@@ -17,6 +17,14 @@
   margin-bottom: var.$space-sm;
 }
 
+.orderPlacementContainer {
+  display: flex;
+  gap: var.$space-sm;
+  font-size: var.$font-size-lg;
+  font-weight: 700;
+  color: #b12707;
+}
+
 .shippingAddressForm,
 .creditCardForm {
   display: flex;

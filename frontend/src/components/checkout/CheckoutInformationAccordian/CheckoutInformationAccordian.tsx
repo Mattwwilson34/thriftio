@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react'
 import styles from './checkout-information-accordian.module.scss'
+import { ShoppingCartProduct } from '@/types/types'
 import { ShoppingCartContext } from '@/context/ShoppingCartContext'
 import AccordianWrapper from '@/components/accordian-wrapper/AccordianWrapper'
 import AddressPreview from '../AddressPreview/AddressPreview'
@@ -39,6 +40,12 @@ function CheckoutInformationAccordian() {
     }
     return true
   }
+
+  // calculate order total
+  const totalCost = shoppingCart.reduce(
+    (accum: number, product: ShoppingCartProduct) =>
+      accum + product.price * product.quantity, 0
+  ).toFixed(2)
 
   // prevent default form submission
   const preventDefault = (event: React.SyntheticEvent) => event.preventDefault()
@@ -121,6 +128,14 @@ function CheckoutInformationAccordian() {
       {shoppingCart.map((product) => {
         return <ProductCheckoutCard product={product} />
       })}
+
+      <hr />
+
+      {/* order placment */}
+      <div className={styles.orderPlacementContainer}>
+        <button className={styles.orderPlacementButton}>Place Order</button>
+        <h2 className={styles.orderPlacementTotal}>Order total: ${totalCost}</h2>
+      </div>
     </div>
   )
 }
