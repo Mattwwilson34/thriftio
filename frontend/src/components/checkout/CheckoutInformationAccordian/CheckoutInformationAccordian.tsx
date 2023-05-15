@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 import styles from './checkout-information-accordian.module.scss'
 import { ShoppingCartProduct } from '@/types/types'
 import { ShoppingCartContext } from '@/context/ShoppingCartContext'
+import OderDetails from '../OrderDetails/OrderDetails'
 import AccordianWrapper from '@/components/accordian-wrapper/AccordianWrapper'
 import AddressPreview from '../AddressPreview/AddressPreview'
 import CreditCardPreview from '../CreditCardPreview/CreditCardPreview'
@@ -57,6 +58,8 @@ function CheckoutInformationAccordian() {
 
   return (
     <div className={styles.checkoutInformationAccordian}>
+      {/* order details */}
+      <OderDetails />
       {/* shipping address */}
       <h2 className={styles.checkoutSectionHeader}>Shipping Address</h2>
       <AddressPreview
