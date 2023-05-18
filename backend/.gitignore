@@ -30,3 +30,8 @@ jspm_packages/
 .DS_Store
 Thumbs.db
 
+# db-backups
+db-backups/
+pokemon-details.json
+
+
