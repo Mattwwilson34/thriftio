@@ -32,6 +32,7 @@ Thumbs.db
 
 # db-backups
 db-backups/
+db-data-extraction/
 pokemon-details.json
 
 
