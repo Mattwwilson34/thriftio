@@ -1,4 +1,5 @@
 const pokeData = require('./pokemon-details.json');
+const typeData = require('./pokemon-types-data.json');
 const fs = require('fs');
 
 const fetchPokemonUrls = async () => {
@@ -44,7 +45,6 @@ const fetchPokemonDetails = async () => {
   );
 };
 
-
 const filterPokeData = () => {
   let pokeArray = [];
 
@@ -54,9 +54,7 @@ const filterPokeData = () => {
       name,
       id,
       types: types.map((type) => type.type.name),
-      sprites: Object.values(sprites).filter(
-        (sprite) => typeof sprite === 'string'
-      ),
+      sprites: sprites.other['official-artwork'].front_default,
     };
     pokeArray.push(newPoke);
   }
@@ -74,5 +72,35 @@ const filterPokeData = () => {
     }
   );
 };
+
+const fetchPokeTypes = async () => {
+  const promises = [];
+  for (let i = 1; i < 19; i++) {
+    const response = await fetch(`https://pokeapi.co/api/v2/type/${i}`);
+    const data = await response.json();
+    promises.push(data);
+  }
+  const data = await Promise.all(promises);
+
+  // write to file
+  fs.writeFile(
+    './pokemon-types-data.json',
+    JSON.stringify(data, null, 2),
+    'utf8',
+    (err) => {
+      if (err) {
+        console.error(err);
+      }
+      // file written successfully
+      console.log('file written successfully');
+    }
+  );
+};
+
+const filterPokeTypes = () => {
+  typeData.forEach((type) => {
+    console.log(type.name)
+  })
+}
 
 filterPokeData();
