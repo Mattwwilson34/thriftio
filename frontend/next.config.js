@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['m.media-amazon.com'],
+    domains: ['raw.githubusercontent.com'],
   },
   reactStrictMode: false,
   async rewrites() {
