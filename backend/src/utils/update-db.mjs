@@ -10,10 +10,6 @@ async function getLimitedRows() {
 
   const promises = [];
 
-  // regex to match image url of pokemon facing forward
-  const regex =
-    /^https:\/\/raw\.githubusercontent\.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/([1-9]|[1-9][0-9]{1,2}|[1-9][0-9]{3})\.png$/;
-
   // update pokemong images urls
   for (let i = 0; i < 999; i++) {
     // Update the row with the new data
@@ -22,9 +18,7 @@ async function getLimitedRows() {
         uuid: limitedRows[i].uuid,
       },
       data: {
-        imageUrl: pokemonData[i].sprites.filter((sprite) =>
-          regex.test(sprite)
-        )[0],
+        imageUrl: pokemonData[i].sprites,
       },
     });
     promises.push(response);
