@@ -1,0 +1,62 @@
+@use '@/styles/variables' as var;
+
+.searchBar {
+  display: flex;
+  border: 1px solid lightGrey;
+  min-height: 40px;
+
+  label {
+    display: flex;
+  }
+}
+
+.searchInput {
+  border: none;
+  padding: var.$space-xs;
+  width: 400px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.categorySelector {
+  border: none;
+  border-left: 1px solid lightGrey;
+  padding: var.$space-xs;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.spacer {
+  width: var.$space-xs;
+  border-right: 1px solid lightGrey;
+}
+
+.searchButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var.$space-xs;
+  border: none;
+  background-color: var.$clr-blue-100;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  aspect-ratio: 1;
+  width: 40px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
