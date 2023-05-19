@@ -71,11 +71,19 @@
   z-index: 1;
 
   .searchResultListItem {
-    padding: var.$space-xs;
+    display: flex;
 
     &:hover {
       cursor: pointer;
       background-color: var.$clr-blue-100;
     }
+  }
+
+  a {
+    padding: var.$space-xs;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 100%;
   }
 }

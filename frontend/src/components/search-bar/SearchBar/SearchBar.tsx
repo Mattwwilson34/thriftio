@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from './search-bar.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 import searchIcon from '../../../../public/icons/search-icon.svg'
 
 interface SearchResults {
@@ -50,6 +51,10 @@ function SearchBar() {
     setSearchText(value)
   }
 
+  function handleClick() {
+    setSearchText('')
+  }
+
   // search results boolean for displaying search suggestions
   const hasSearchResults = searchResults.length > 0 && searchText !== ''
 
@@ -80,8 +85,8 @@ function SearchBar() {
           <ul className={styles.searchSuggestions}>
             {searchResults.map((result) => {
               return (
-                <li className={styles.searchResultListItem} key={result.uuid}>
-                  {result.name}
+                <li className={styles.searchResultListItem} key={result.uuid} onClick={handleClick}>
+                  <Link href={`/products/${result.uuid}`}>{result.name}</Link>
                 </li>
               )
             })}
