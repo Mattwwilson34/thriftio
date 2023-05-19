@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import cookie from 'cookie'
 
 // create a type for the error response
 type ErrorResponse = {
