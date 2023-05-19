@@ -53,26 +53,33 @@ function ShopingCartContextProvider({ children }: Props) {
         newCart = [...shoppingCart]
         return { ...state, shoppingCart: newCart }
 
-      // add product to cart
+      // add product to cart from a product card
       case 'ADD_TO_CART':
         const { productData } = action.payload
-        if (newCart.find((item) => item.uuid === productData.uuid)) {
-          productData.quantity += 1
-        } else {
+        const productInCart = newCart.find((item) => item.uuid === productData.uuid)
+        
+        // handle product already in cart
+        // must update cart product not productData
+        // productData does not have quantity value
+        if (productInCart) {
+          productInCart.quantity += 1
+        } 
+        // handle product not in cart
+        else {
           productData.quantity = 1
           newCart = [...newCart, productData]
         }
         updateCart(newCart)
         return { ...state, shoppingCart: newCart }
 
-      // remove product from cart
+      // remove product from cart from the shopping cart page
       case 'REMOVE_FROM_CART':
         const { uuid: uuidToRemove } = action.payload.productToRemove
         newCart = newCart.filter((item) => item.uuid !== uuidToRemove)
         updateCart(newCart)
         return { ...state, shoppingCart: newCart }
 
-      // update product quantity in cart
+      // update product quantity in cart from the shopping cart page
       case 'UPDATE_CART_QUANTITY':
         const { uuid, quantity } = action.payload.updatedProduct
         const productToUpdateIndex = newCart.findIndex(
