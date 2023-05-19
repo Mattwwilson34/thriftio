@@ -30,9 +30,9 @@ jspm_packages/
 .DS_Store
 Thumbs.db
 
-# db-backups
-db-backups/
-db-data-extraction/
+# files too large to add
+pokemon-filtered-details.json
 pokemon-details.json
-
-
+pokemon-urls.json
+db-backups
+db-data-extraction
