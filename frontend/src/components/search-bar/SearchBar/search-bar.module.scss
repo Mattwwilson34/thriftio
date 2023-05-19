@@ -60,3 +60,22 @@
     height: 20px;
   }
 }
+
+.searchSuggestionsContainer {
+  position: absolute;
+  height: 200px;
+  width: 400px;
+  background-color: white;
+  border: 1px solid lightGrey;
+  overflow-y: scroll;
+  z-index: 1;
+
+  .searchResultListItem {
+    padding: var.$space-xs;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var.$clr-blue-100;
+    }
+  }
+}
