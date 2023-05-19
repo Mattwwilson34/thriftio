@@ -13,7 +13,6 @@ const router = express.Router();
 router.get(
   '/products',
   async (req: SessionRequest, res: Response): Promise<void> => {
-
     const cursor = req.query.cursor as string | undefined;
     const take = 10;
 
@@ -64,19 +63,23 @@ router.get(
   }
 );
 
-router.post('/shopping-cart-session-update', (req: SessionRequest, res: Response): void => {
-  req.session.shoppingCart = req.body;
-  res.send(JSON.stringify('ok from shopping-cart'));
-})
+router.post(
+  '/shopping-cart-session-update',
+  (req: SessionRequest, res: Response): void => {
+    req.session.shoppingCart = req.body;
+    console.log(req.session);
+    res.send(JSON.stringify('ok from shopping-cart'));
+  }
+);
 
 router.get('/cart', (req: SessionRequest, res: Response): void => {
   if (!req.session.shoppingCart) {
     req.session.shoppingCart = [];
   }
   res.send(JSON.stringify(req.session.shoppingCart));
-})
+});
 
-router.get('/sessions', (req:any, res) => {
+router.get('/sessions', (req: any, res) => {
   req.sessionStore.all((err, sessions) => {
     if (err) {
       console.error(err);
@@ -86,5 +89,57 @@ router.get('/sessions', (req:any, res) => {
     res.send('Sessions logged to console');
   });
 });
+
+// product search endpoints
+router.get(
+  '/product-search',
+  async (req: SessionRequest, res: Response): Promise<void> => {
+    let searchTerm: string = '';
+
+    // update search term if it exists
+    if (req.query.search) {
+      searchTerm = req.query.search as string;
+    }
+
+    try {
+      // query database based on search term
+      const response = await prisma.products.findMany({
+        where: {
+          name: {
+            contains: searchTerm,
+          },
+        },
+        select: {
+          uuid: true,
+          name: true,
+        },
+      });
+
+      // create copy of response to sort
+      const responseCopy = [...response];
+
+      // filter results based on on substring
+      // prioritize results that start with the substring
+      const sortedResults = responseCopy.sort((a, b) => {
+        const lowerA = a.name ? a.name.toLowerCase() : '';
+        const lowerB = b.name ? b.name.toLowerCase() : '';
+
+        if (lowerA.startsWith(searchTerm.toLowerCase())) {
+          return -1; // Substring found at the beginning, prioritize
+        } else if (lowerB.startsWith(searchTerm.toLowerCase())) {
+          return 1; // Substring found at the beginning, prioritize
+        } else {
+          return 0; // Substring found elsewhere or not found in both
+        }
+      });
+
+      // return prisma query response if no error
+      res.send(JSON.stringify(sortedResults));
+    } catch (error) {
+      if (error) console.log(error);
+      res.send(JSON.stringify('error from product-search'));
+    }
+  }
+);
 
 export default router;
