@@ -19,4 +19,20 @@ model products {
   brand       String?
   available   Boolean?
   imageUrl    String?
+  types       productTypeMapping[]
+}
+
+model types {
+  uuid        String    @id @default(uuid())
+  type        String?
+  products    productTypeMapping[]
+}
+
+model productTypeMapping {
+  product     products @relation(fields: [productId], references: [uuid])
+  productId   String
+  type        types    @relation(fields: [typeId], references: [uuid])
+  typeId      String
+
+  @@id([productId, typeId])
 }
