@@ -1,4 +1,5 @@
 import styles from './nav.module.scss'
+import SearchBar from '@/components/search-bar'
 import { Cart } from '@/components/cart'
 
 function Nav(): JSX.Element {
@@ -11,6 +12,7 @@ function Nav(): JSX.Element {
           </a>
         </h1>
       </header>
+        <SearchBar />
       <div className={styles.cartContainer}>
         <Cart />
       </div>
