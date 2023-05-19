@@ -19,6 +19,16 @@ export default async function handler(
         Cookie: req.headers.cookie ?? '',
       },
     })
+
+    // get cookie header from the response
+    const setCookieHeader = response.headers.get('set-cookie')
+
+    // set the cookie on browser
+    // this cookie had to be set manually
+    // due to nextJS sever not forwording it to the browser
+    res.setHeader('Set-Cookie', setCookieHeader)
+
+
     const shoppingCartSessionData = await response.json()
     res.send(JSON.stringify(shoppingCartSessionData))
   } catch (error: any) {
