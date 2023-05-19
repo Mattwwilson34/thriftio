@@ -96,11 +96,3 @@ const fetchPokeTypes = async () => {
     }
   );
 };
-
-const filterPokeTypes = () => {
-  typeData.forEach((type) => {
-    console.log(type.name)
-  })
-}
-
-filterPokeData();
